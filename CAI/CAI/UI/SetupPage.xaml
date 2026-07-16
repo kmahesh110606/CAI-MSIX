@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="CAI.UI.SetupPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="#000000"
+    Loaded="Page_Loaded">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <StackPanel Grid.Row="0" Spacing="8" Padding="40,40,40,0">
+            <TextBlock Text="CAI"
+                       FontFamily="{StaticResource CAIHeadingFont}"
+                       FontSize="20" Foreground="White"
+                       CharacterSpacing="200" />
+
+            <!-- Metallic separator -->
+            <Border Height="1" HorizontalAlignment="Left" Width="60" Margin="0,8,0,0">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0.5" EndPoint="1,0.5">
+                        <GradientStop Color="#FF333333" Offset="0" />
+                        <GradientStop Color="#FFAAAAAA" Offset="0.5" />
+                        <GradientStop Color="#FF222222" Offset="1" />
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+
+            <TextBlock Text="CHOOSE YOUR MODEL"
+                       FontFamily="{StaticResource CAIHeadingFont}"
+                       FontSize="28" Foreground="White"
+                       Margin="0,16,0,0" />
+
+            <TextBlock x:Name="SystemInfoText"
+                       Text="Detecting system specifications..."
+                       FontSize="12" FontWeight="Light"
+                       Foreground="{StaticResource CAIGrayMidBrush}"
+                       CharacterSpacing="100" />
+        </StackPanel>
+
+        <!-- Model Cards -->
+        <ScrollViewer Grid.Row="1" Padding="40,24,40,24">
+            <StackPanel x:Name="ModelCardsPanel" Spacing="12" MaxWidth="700">
+
+                <!-- Model Card 1: Phi-3 Mini — Recommended -->
+                <Border Background="#05FFFFFF" BorderBrush="#0DFFFFFF" BorderThickness="1"
+                        Padding="24,20" CornerRadius="2">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <!-- Title + recommended badge -->
+                        <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" Spacing="12">
+                            <TextBlock Text="Phi-3 Mini (ONNX)" FontSize="16" FontWeight="SemiBold" Foreground="White" />
+                            <Border Background="#1AFFFFFF" CornerRadius="2" Padding="8,3">
+                                <TextBlock Text="⭐ RECOMMENDED" FontSize="10" FontWeight="SemiBold"
+                                           Foreground="{StaticResource CAISilverBrush}" CharacterSpacing="150" />
+                            </Border>
+                        </StackPanel>
+
+                        <!-- Description -->
+                        <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+                                   Text="Fast, lightweight model optimized for ONNX Runtime. Best for quick responses and low-resource devices."
+                                   FontSize="13" FontWeight="Light" Foreground="{StaticResource CAIGrayLightBrush}"
+                                   Margin="0,6,0,0" TextWrapping="WrapWholeWords" />
+
+                        <!-- Specs -->
+                        <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Horizontal" Spacing="20" Margin="0,10,0,0">
+                            <TextBlock FontSize="11" Foreground="{StaticResource CAIGrayMidBrush}" CharacterSpacing="100">
+                                <Run Text="SIZE:" /><Run Text=" ~2.4 GB" Foreground="{StaticResource CAISilverBrush}" />
+                            </TextBlock>
+                            <TextBlock FontSize="11" Foreground="{StaticResource CAIGrayMidBrush}" CharacterSpacing="100">
+                                <Run Text="RAM:" /><Run Text=" 4 GB+" Foreground="{StaticResource CAISilverBrush}" />
+                            </TextBlock>
+                        </StackPanel>
+
+                        <!-- Download button -->
+                        <StackPanel Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" VerticalAlignment="Center">
+                            <Button x:Name="DownloadBtn1" Tag="phi-3-mini-onnx" Click="Download_Click"
+                                    Background="Transparent" BorderBrush="{StaticResource CAIGrayDarkBrush}"
+                                    BorderThickness="1" Padding="20,8" CornerRadius="0"
+                                    Foreground="{StaticResource CAISilverBrush}"
+                                    FontSize="11" FontWeight="Light" CharacterSpacing="200"
+                                    Content="DOWNLOAD" />
+                            <ProgressBar x:Name="Progress1" Visibility="Collapsed"
+                                         Minimum="0" Maximum="100" Value="0"
+                                         Width="100" Margin="0,8,0,0"
+                                         Foreground="{StaticResource CAISilverBrush}" />
+                        </StackPanel>
+                    </Grid>
+                </Border>
+
+                <!-- Model Card 2: TinyLlama -->
+                <Border Background="#05FFFFFF" BorderBrush="#0DFFFFFF" BorderThickness="1"
+                        Padding="24,20" CornerRadius="2">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Row="0" Grid.Column="0" Text="TinyLlama 1.1B (GGUF)"
+                                   FontSize="16" FontWeight="SemiBold" Foreground="White" />
+
+                        <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+                                   Text="Ultra-lightweight model for basic tasks. Runs on almost any hardware with minimal resources."
+                                   FontSize="13" FontWeight="Light" Foreground="{StaticResource CAIGrayLightBrush}"
+                                   Margin="0,6,0,0" TextWrapping="WrapWholeWords" />
+
+                        <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Horizontal" Spacing="20" Margin="0,10,0,0">
+                            <TextBlock FontSize="11" Foreground="{StaticResource CAIGrayMidBrush}" CharacterSpacing="100">
+                                <Run Text="SIZE:" /><Run Text=" ~640 MB" Foreground="{StaticResource CAISilverBrush}" />
+                            </TextBlock>
+                            <TextBlock FontSize="11" Foreground="{StaticResource CAIGrayMidBrush}" CharacterSpacing="100">
+                                <Run Text="RAM:" /><Run Text=" 2 GB+" Foreground="{StaticResource CAISilverBrush}" />
+                            </TextBlock>
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" VerticalAlignment="Center">
+                            <Button x:Name="DownloadBtn2" Tag="tinyllama-gguf" Click="Download_Click"
+                                    Background="Transparent" BorderBrush="{StaticResource CAIGrayDarkBrush}"
+                                    BorderThickness="1" Padding="20,8" CornerRadius="0"
+                                    Foreground="{StaticResource CAISilverBrush}"
+                                    FontSize="11" FontWeight="Light" CharacterSpacing="200"
+                                    Content="DOWNLOAD" />
+                            <ProgressBar x:Name="Progress2" Visibility="Collapsed"
+                                         Minimum="0" Maximum="100" Value="0"
+                                         Width="100" Margin="0,8,0,0"
+                                         Foreground="{StaticResource CAISilverBrush}" />
+                        </StackPanel>
+                    </Grid>
+                </Border>
+
+                <!-- Model Card 3: Mistral 7B -->
+                <Border Background="#05FFFFFF" BorderBrush="#0DFFFFFF" BorderThickness="1"
+                        Padding="24,20" CornerRadius="2">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Row="0" Grid.Column="0" Text="Mistral 7B (GGUF)"
+                                   FontSize="16" FontWeight="SemiBold" Foreground="White" />
+
+                        <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+                                   Text="High-quality model for complex reasoning and nuanced conversations. Requires more powerful hardware."
+                                   FontSize="13" FontWeight="Light" Foreground="{StaticResource CAIGrayLightBrush}"
+                                   Margin="0,6,0,0" TextWrapping="WrapWholeWords" />
+
+                        <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Horizontal" Spacing="20" Margin="0,10,0,0">
+                            <TextBlock FontSize="11" Foreground="{StaticResource CAIGrayMidBrush}" CharacterSpacing="100">
+                                <Run Text="SIZE:" /><Run Text=" ~4.1 GB" Foreground="{StaticResource CAISilverBrush}" />
+                            </TextBlock>
+                            <TextBlock FontSize="11" Foreground="{StaticResource CAIGrayMidBrush}" CharacterSpacing="100">
+                                <Run Text="RAM:" /><Run Text=" 8 GB+" Foreground="{StaticResource CAISilverBrush}" />
+                            </TextBlock>
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" VerticalAlignment="Center">
+                            <Button x:Name="DownloadBtn3" Tag="mistral-7b-gguf" Click="Download_Click"
+                                    Background="Transparent" BorderBrush="{StaticResource CAIGrayDarkBrush}"
+                                    BorderThickness="1" Padding="20,8" CornerRadius="0"
+                                    Foreground="{StaticResource CAISilverBrush}"
+                                    FontSize="11" FontWeight="Light" CharacterSpacing="200"
+                                    Content="DOWNLOAD" />
+                            <ProgressBar x:Name="Progress3" Visibility="Collapsed"
+                                         Minimum="0" Maximum="100" Value="0"
+                                         Width="100" Margin="0,8,0,0"
+                                         Foreground="{StaticResource CAISilverBrush}" />
+                        </StackPanel>
+                    </Grid>
+                </Border>
+
+                <!-- Model Card 4: Llama 3.2 3B -->
+                <Border Background="#05FFFFFF" BorderBrush="#0DFFFFFF" BorderThickness="1"
+                        Padding="24,20" CornerRadius="2">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Row="0" Grid.Column="0" Text="Llama 3.2 3B (GGUF)"
+                                   FontSize="16" FontWeight="SemiBold" Foreground="White" />
+
+                        <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+                                   Text="Balanced model offering good quality and speed. A solid middle-ground for most use cases."
+                                   FontSize="13" FontWeight="Light" Foreground="{StaticResource CAIGrayLightBrush}"
+                                   Margin="0,6,0,0" TextWrapping="WrapWholeWords" />
+
+                        <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Horizontal" Spacing="20" Margin="0,10,0,0">
+                            <TextBlock FontSize="11" Foreground="{StaticResource CAIGrayMidBrush}" CharacterSpacing="100">
+                                <Run Text="SIZE:" /><Run Text=" ~2.0 GB" Foreground="{StaticResource CAISilverBrush}" />
+                            </TextBlock>
+                            <TextBlock FontSize="11" Foreground="{StaticResource CAIGrayMidBrush}" CharacterSpacing="100">
+                                <Run Text="RAM:" /><Run Text=" 4 GB+" Foreground="{StaticResource CAISilverBrush}" />
+                            </TextBlock>
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" VerticalAlignment="Center">
+                            <Button x:Name="DownloadBtn4" Tag="llama-3.2-3b-gguf" Click="Download_Click"
+                                    Background="Transparent" BorderBrush="{StaticResource CAIGrayDarkBrush}"
+                                    BorderThickness="1" Padding="20,8" CornerRadius="0"
+                                    Foreground="{StaticResource CAISilverBrush}"
+                                    FontSize="11" FontWeight="Light" CharacterSpacing="200"
+                                    Content="DOWNLOAD" />
+                            <ProgressBar x:Name="Progress4" Visibility="Collapsed"
+                                         Minimum="0" Maximum="100" Value="0"
+                                         Width="100" Margin="0,8,0,0"
+                                         Foreground="{StaticResource CAISilverBrush}" />
+                        </StackPanel>
+                    </Grid>
+                </Border>
+
+            </StackPanel>
+        </ScrollViewer>
+
+        <!-- Bottom bar with Continue button -->
+        <Grid Grid.Row="2" Padding="40,16,40,32">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock x:Name="DownloadStatusText"
+                       Text="Download at least one model to continue"
+                       FontSize="12" FontWeight="Light"
+                       Foreground="{StaticResource CAIGrayMidBrush}"
+                       CharacterSpacing="100"
+                       VerticalAlignment="Center" />
+
+            <Button x:Name="ContinueButton" Grid.Column="1"
+                    Click="Continue_Click"
+                    IsEnabled="False"
+                    Background="Transparent"
+                    BorderBrush="{StaticResource CAIGrayDarkBrush}"
+                    BorderThickness="1"
+                    Padding="32,10"
+                    CornerRadius="0"
+                    Foreground="{StaticResource CAISilverBrush}"
+                    FontSize="12" FontWeight="Light" CharacterSpacing="200"
+                    Content="CONTINUE" />
+        </Grid>
+    </Grid>
+</Page>

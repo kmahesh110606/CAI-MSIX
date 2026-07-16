@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Application
+    x:Class="CAI.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CAI">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
+                <!-- Other merged dictionaries here -->
+            </ResourceDictionary.MergedDictionaries>
+
+            <!-- ============================================================
+                 CAI Design System — Monochrome Elite Theme
+                 Matches the website's CSS custom properties
+                 ============================================================ -->
+
+            <!-- Font Family — Serif heading font matching the website -->
+            <FontFamily x:Key="CAIHeadingFont">Times New Roman</FontFamily>
+
+            <!-- Monochrome Palette -->
+            <Color x:Key="CAIBlackPure">#FF000000</Color>
+            <Color x:Key="CAIBlackSoft">#FF080808</Color>
+            <Color x:Key="CAIBlackMute">#FF111111</Color>
+            <Color x:Key="CAIGrayDark">#FF222222</Color>
+            <Color x:Key="CAIGrayMid">#FF555555</Color>
+            <Color x:Key="CAIGrayLight">#FF888888</Color>
+            <Color x:Key="CAISilver">#FFCCCCCC</Color>
+            <Color x:Key="CAIWhite">#FFFFFFFF</Color>
+
+            <!-- Solid Brushes -->
+            <SolidColorBrush x:Key="CAIBlackPureBrush" Color="{StaticResource CAIBlackPure}" />
+            <SolidColorBrush x:Key="CAIBlackSoftBrush" Color="{StaticResource CAIBlackSoft}" />
+            <SolidColorBrush x:Key="CAIBlackMuteBrush" Color="{StaticResource CAIBlackMute}" />
+            <SolidColorBrush x:Key="CAIGrayDarkBrush" Color="{StaticResource CAIGrayDark}" />
+            <SolidColorBrush x:Key="CAIGrayMidBrush" Color="{StaticResource CAIGrayMid}" />
+            <SolidColorBrush x:Key="CAIGrayLightBrush" Color="{StaticResource CAIGrayLight}" />
+            <SolidColorBrush x:Key="CAISilverBrush" Color="{StaticResource CAISilver}" />
+            <SolidColorBrush x:Key="CAIWhiteBrush" Color="{StaticResource CAIWhite}" />
+
+            <!-- Metallic Gradient Brush (vertical accent strip) -->
+            <LinearGradientBrush x:Key="CAIMetallicGradient" StartPoint="0,0" EndPoint="0,1">
+                <GradientStop Color="#FF333333" Offset="0.0" />
+                <GradientStop Color="#FFAAAAAA" Offset="0.5" />
+                <GradientStop Color="#FF222222" Offset="1.0" />
+            </LinearGradientBrush>
+
+            <!-- Shimmer Gradient for text (horizontal) -->
+            <LinearGradientBrush x:Key="CAIShimmerGradient" StartPoint="0,0.5" EndPoint="1,0.5">
+                <GradientStop Color="#FF333333" Offset="0.0" />
+                <GradientStop Color="#FFFFFFFF" Offset="0.25" />
+                <GradientStop Color="#FF888888" Offset="0.5" />
+                <GradientStop Color="#FFFFFFFF" Offset="0.75" />
+                <GradientStop Color="#FF333333" Offset="1.0" />
+            </LinearGradientBrush>
+
+            <!-- Glass Background -->
+            <SolidColorBrush x:Key="CAIGlassBrush" Color="#05FFFFFF" />
+            <SolidColorBrush x:Key="CAIGlassStrongBrush" Color="#0DFFFFFF" />
+            <SolidColorBrush x:Key="CAIGlassBorderBrush" Color="#0DFFFFFF" />
+            <SolidColorBrush x:Key="CAIGlassBorderHoverBrush" Color="#26FFFFFF" />
+
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

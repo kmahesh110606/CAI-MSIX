@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="CAI.UI.LoginPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:Microsoft.UI.Xaml.Controls"
+    mc:Ignorable="d"
+    Loaded="Page_Loaded">
+
+    <Grid Background="#000000">
+        <!-- WebView2 fills the entire page -->
+        <WebView2 x:Name="LoginWebView"
+                  HorizontalAlignment="Stretch"
+                  VerticalAlignment="Stretch" />
+
+        <!-- Loading overlay shown while WebView2 initializes -->
+        <Grid x:Name="LoadingOverlay" Background="#000000">
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Spacing="20">
+                <!-- CAI logo -->
+                <TextBlock Text="CAI"
+                           FontFamily="{StaticResource CAIHeadingFont}"
+                           FontSize="36" Foreground="White"
+                           HorizontalAlignment="Center"
+                           CharacterSpacing="200" />
+
+                <ProgressRing IsActive="True" Width="32" Height="32"
+                              Foreground="{StaticResource CAIGrayLightBrush}" />
+
+                <TextBlock Text="LOADING SIGN-IN"
+                           FontSize="11" FontWeight="Light"
+                           Foreground="{StaticResource CAIGrayMidBrush}"
+                           HorizontalAlignment="Center"
+                           CharacterSpacing="300" />
+            </StackPanel>
+        </Grid>
+
+        <!-- Error overlay, hidden by default -->
+        <Grid x:Name="ErrorOverlay" Background="#000000" Visibility="Collapsed">
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center"
+                        Width="380" Spacing="20">
+                <!-- Logo -->
+                <TextBlock Text="CAI"
+                           FontFamily="{StaticResource CAIHeadingFont}"
+                           FontSize="36" Foreground="White"
+                           HorizontalAlignment="Center"
+                           CharacterSpacing="200" />
+
+                <!-- Separator line -->
+                <Border Height="1" HorizontalAlignment="Stretch"
+                        MaxWidth="120" Margin="0,4">
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0,0.5" EndPoint="1,0.5">
+                            <GradientStop Color="#00FFFFFF" Offset="0" />
+                            <GradientStop Color="#1AFFFFFF" Offset="0.5" />
+                            <GradientStop Color="#00FFFFFF" Offset="1" />
+                        </LinearGradientBrush>
+                    </Border.Background>
+                </Border>
+
+                <TextBlock x:Name="ErrorMessage"
+                           Text="Could not load the sign-in page."
+                           HorizontalAlignment="Center" TextWrapping="Wrap"
+                           TextAlignment="Center"
+                           FontSize="14" FontWeight="Light"
+                           Foreground="{StaticResource CAIGrayLightBrush}" />
+
+                <Button Content="RETRY"
+                        Click="Retry_Click"
+                        HorizontalAlignment="Center"
+                        Background="Transparent"
+                        BorderBrush="{StaticResource CAIGrayDarkBrush}"
+                        BorderThickness="1"
+                        Padding="32,10"
+                        CornerRadius="0"
+                        Foreground="{StaticResource CAISilverBrush}"
+                        FontSize="12" FontWeight="Light"
+                        CharacterSpacing="200" />
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>

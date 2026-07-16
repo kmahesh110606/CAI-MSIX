@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="CAI.UI.ProfilePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <ScrollViewer Padding="24">
+        <StackPanel Spacing="24" MaxWidth="500">
+
+            <!-- Header -->
+            <StackPanel Spacing="4">
+                <TextBlock Text="PROFILE"
+                           FontFamily="{StaticResource CAIHeadingFont}"
+                           FontSize="24" Foreground="White" />
+                <Border Height="1" HorizontalAlignment="Left" Width="40">
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0,0.5" EndPoint="1,0.5">
+                            <GradientStop Color="#FF333333" Offset="0" />
+                            <GradientStop Color="#FFAAAAAA" Offset="0.5" />
+                            <GradientStop Color="#FF222222" Offset="1" />
+                        </LinearGradientBrush>
+                    </Border.Background>
+                </Border>
+            </StackPanel>
+
+            <!-- Avatar placeholder -->
+            <Border Width="80" Height="80" CornerRadius="40"
+                    Background="#0AFFFFFF" HorizontalAlignment="Left">
+                <FontIcon Glyph="&#xE77B;" FontSize="36" Foreground="{StaticResource CAIGrayMidBrush}"
+                          HorizontalAlignment="Center" VerticalAlignment="Center" />
+            </Border>
+
+            <!-- User info card -->
+            <Border Background="#05FFFFFF" BorderBrush="#0DFFFFFF" BorderThickness="1"
+                    Padding="24,20" CornerRadius="2">
+                <StackPanel Spacing="16">
+                    <StackPanel Spacing="4">
+                        <TextBlock Text="NAME" FontSize="10" FontWeight="SemiBold"
+                                   Foreground="{StaticResource CAIGrayMidBrush}" CharacterSpacing="200" />
+                        <TextBlock x:Name="UserNameText" Text="—" FontSize="16" Foreground="White" />
+                    </StackPanel>
+
+                    <!-- Separator -->
+                    <Border Height="1" Background="#0DFFFFFF" />
+
+                    <StackPanel Spacing="4">
+                        <TextBlock Text="EMAIL" FontSize="10" FontWeight="SemiBold"
+                                   Foreground="{StaticResource CAIGrayMidBrush}" CharacterSpacing="200" />
+                        <TextBlock x:Name="UserEmailText" Text="—" FontSize="14"
+                                   Foreground="{StaticResource CAISilverBrush}" />
+                    </StackPanel>
+
+                    <Border Height="1" Background="#0DFFFFFF" />
+
+                    <StackPanel Spacing="4">
+                        <TextBlock Text="MEMBER SINCE" FontSize="10" FontWeight="SemiBold"
+                                   Foreground="{StaticResource CAIGrayMidBrush}" CharacterSpacing="200" />
+                        <TextBlock x:Name="JoinedDateText" Text="—" FontSize="14"
+                                   Foreground="{StaticResource CAISilverBrush}" />
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <!-- Installed models -->
+            <Border Background="#05FFFFFF" BorderBrush="#0DFFFFFF" BorderThickness="1"
+                    Padding="24,20" CornerRadius="2">
+                <StackPanel Spacing="8">
+                    <TextBlock Text="INSTALLED MODELS" FontSize="10" FontWeight="SemiBold"
+                               Foreground="{StaticResource CAIGrayMidBrush}" CharacterSpacing="200" />
+                    <TextBlock x:Name="InstalledModelsText" Text="None"
+                               FontSize="14" Foreground="{StaticResource CAISilverBrush}" />
+                </StackPanel>
+            </Border>
+
+            <!-- Sign out button -->
+            <Button Content="SIGN OUT" Click="SignOut_Click"
+                    HorizontalAlignment="Left"
+                    Background="Transparent"
+                    BorderBrush="{StaticResource CAIGrayDarkBrush}"
+                    BorderThickness="1"
+                    Padding="32,10"
+                    CornerRadius="0"
+                    Foreground="{StaticResource CAISilverBrush}"
+                    FontSize="12" FontWeight="Light" CharacterSpacing="200" />
+
+        </StackPanel>
+    </ScrollViewer>
+</Page>

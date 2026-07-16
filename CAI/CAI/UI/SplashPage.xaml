@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="CAI.UI.SplashPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="#000000"
+    Loaded="Page_Loaded">
+
+    <Grid>
+        <!-- Centered logo container -->
+        <StackPanel x:Name="LogoContainer" Opacity="0"
+                    VerticalAlignment="Center" HorizontalAlignment="Center"
+                    Spacing="16"
+                    RenderTransformOrigin="0.5,0.5">
+
+            <StackPanel.RenderTransform>
+                <ScaleTransform x:Name="LogoScale" ScaleX="0.8" ScaleY="0.8" />
+            </StackPanel.RenderTransform>
+
+            <!-- Audio wave bars behind the logo text -->
+            <Grid HorizontalAlignment="Center" Height="80">
+                <!-- Wave bars (behind text) -->
+                <StackPanel Orientation="Horizontal" Spacing="6"
+                            HorizontalAlignment="Center" VerticalAlignment="Center"
+                            Opacity="0.15">
+                    <Rectangle Width="10" Height="20" RadiusX="5" RadiusY="5" Fill="White" RenderTransformOrigin="0.5,0.5">
+                        <Rectangle.RenderTransform><ScaleTransform x:Name="Bar1Scale" ScaleY="0.15" /></Rectangle.RenderTransform>
+                    </Rectangle>
+                    <Rectangle Width="10" Height="50" RadiusX="5" RadiusY="5" Fill="White" RenderTransformOrigin="0.5,0.5">
+                        <Rectangle.RenderTransform><ScaleTransform x:Name="Bar2Scale" ScaleY="0.15" /></Rectangle.RenderTransform>
+                    </Rectangle>
+                    <Rectangle Width="10" Height="30" RadiusX="5" RadiusY="5" Fill="White" RenderTransformOrigin="0.5,0.5">
+                        <Rectangle.RenderTransform><ScaleTransform x:Name="Bar3Scale" ScaleY="0.15" /></Rectangle.RenderTransform>
+                    </Rectangle>
+                    <Rectangle Width="10" Height="60" RadiusX="5" RadiusY="5" Fill="White" RenderTransformOrigin="0.5,0.5">
+                        <Rectangle.RenderTransform><ScaleTransform x:Name="Bar4Scale" ScaleY="0.15" /></Rectangle.RenderTransform>
+                    </Rectangle>
+                    <Rectangle Width="10" Height="40" RadiusX="5" RadiusY="5" Fill="White" RenderTransformOrigin="0.5,0.5">
+                        <Rectangle.RenderTransform><ScaleTransform x:Name="Bar5Scale" ScaleY="0.15" /></Rectangle.RenderTransform>
+                    </Rectangle>
+                    <Rectangle Width="10" Height="24" RadiusX="5" RadiusY="5" Fill="White" RenderTransformOrigin="0.5,0.5">
+                        <Rectangle.RenderTransform><ScaleTransform x:Name="Bar6Scale" ScaleY="0.15" /></Rectangle.RenderTransform>
+                    </Rectangle>
+                </StackPanel>
+
+                <!-- CAI Logo Text overlay -->
+                <TextBlock Text="CAI"
+                           FontFamily="{StaticResource CAIHeadingFont}"
+                           FontSize="72"
+                           Foreground="White"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           CharacterSpacing="200" />
+            </Grid>
+
+            <!-- Subtitle -->
+            <TextBlock x:Name="SubtitleText"
+                       Text="INTELLIGENCE EVERYWHERE"
+                       FontSize="13"
+                       FontWeight="Light"
+                       Foreground="{StaticResource CAIGrayLightBrush}"
+                       CharacterSpacing="400"
+                       HorizontalAlignment="Center"
+                       Opacity="0"
+                       RenderTransformOrigin="0.5,0.5">
+                <TextBlock.RenderTransform>
+                    <TranslateTransform x:Name="SubtitleTranslate" Y="20" />
+                </TextBlock.RenderTransform>
+            </TextBlock>
+        </StackPanel>
+
+        <!-- Version text at bottom -->
+        <TextBlock Text="v1.0.0"
+                   FontSize="11"
+                   Foreground="{StaticResource CAIGrayDarkBrush}"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Bottom"
+                   Margin="0,0,0,24" />
+    </Grid>
+</Page>
